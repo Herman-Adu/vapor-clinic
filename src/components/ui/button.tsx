@@ -1,38 +1,30 @@
-"use client"
+"use client";
 
-import { Button as ButtonPrimitive } from "@base-ui/react/button"
-import { cva, type VariantProps } from "class-variance-authority"
+import * as React from "react";
+import { Button as ButtonPrimitive } from "@base-ui/react/button";
+import { cva, type VariantProps } from "class-variance-authority";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button relative inline-flex shrink-0 items-center justify-center rounded-[2rem] border border-transparent text-sm font-medium whitespace-nowrap outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 overflow-hidden transform-gpu will-change-transform hover:scale-[1.03] active:scale-[0.97]",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground [a]:hover:bg-primary/80",
+        default: "text-primary-foreground border-primary",
         outline:
-          "border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50",
+          "border-border bg-background hover:text-foreground text-foreground",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground",
-        ghost:
-          "hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50",
-        destructive:
-          "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
-        link: "text-primary underline-offset-4 hover:underline",
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "hover:text-foreground text-foreground",
+        destructive: "text-destructive",
+        link: "text-primary underline-offset-4 hover:underline !bg-transparent !p-0 hover:-translate-y-[1px]",
       },
       size: {
-        default:
-          "h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2",
-        xs: "h-6 gap-1 rounded-[min(var(--radius-md),10px)] px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3",
-        sm: "h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&_svg:not([class*='size-'])]:size-3.5",
-        lg: "h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-3 has-data-[icon=inline-start]:pl-3",
-        icon: "size-8",
-        "icon-xs":
-          "size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&_svg:not([class*='size-'])]:size-3",
-        "icon-sm":
-          "size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg",
-        "icon-lg": "size-9",
+        default: "h-12 px-6 py-2",
+        sm: "h-10 rounded-[1.5rem] px-4 text-xs",
+        lg: "h-14 rounded-[2.5rem] px-8 text-base",
+        icon: "size-12 rounded-full",
       },
     },
     defaultVariants: {
@@ -40,21 +32,79 @@ const buttonVariants = cva(
       size: "default",
     },
   }
-)
+);
 
-function Button({
-  className,
-  variant = "default",
-  size = "default",
-  ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
-  return (
-    <ButtonPrimitive
-      data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props}
-    />
-  )
-}
+// We define specific background behaviors for the sliding animation based on variant
+const getBackgroundLayerClasses = (variant?: string | null) => {
+  switch (variant) {
+    case "outline":
+    case "ghost":
+      return "bg-muted translate-y-[101%] group-hover/button:translate-y-0";
+    case "default":
+    default:
+      return "bg-accent translate-y-[101%] group-hover/button:translate-y-0";
+  }
+};
 
-export { Button, buttonVariants }
+const getDefaultBg = (variant?: string | null) => {
+  if (variant === "default" || !variant) return "bg-primary";
+  if (variant === "secondary") return "bg-secondary";
+  return "bg-transparent";
+};
+
+export interface ButtonProps
+  extends React.ComponentPropsWithoutRef<typeof ButtonPrimitive>,
+    VariantProps<typeof buttonVariants> {}
+
+const Button = React.forwardRef<React.ElementRef<typeof ButtonPrimitive>, ButtonProps>(
+  ({ className, variant, size, children, ...props }, ref) => {
+    
+    // Pass custom cubic-bezier via inline style for precise match with GEMINI.md
+    const magneticStyle = {
+      transition: "transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.4s ease",
+    };
+
+    const bgLayerStyle = {
+      transition: "transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.4s ease",
+    };
+
+    if (variant === "link") {
+      return (
+        <ButtonPrimitive
+          ref={ref}
+          className={cn(buttonVariants({ variant, size, className }))}
+          style={magneticStyle}
+          {...props}
+        >
+          {children}
+        </ButtonPrimitive>
+      );
+    }
+
+    return (
+      <ButtonPrimitive
+        ref={ref}
+        className={cn(buttonVariants({ variant, size, className }), getDefaultBg(variant))}
+        style={magneticStyle}
+        {...props}
+      >
+        {/* Sliding Background Layer */}
+        <span 
+          className={cn(
+            "absolute inset-0 z-0 w-full h-full block rounded-inherit",
+            getBackgroundLayerClasses(variant)
+          )}
+          style={bgLayerStyle}
+        />
+        
+        {/* Content Layer — text flips dark on hover when accent bg slides in */}
+        <span className="relative z-10 flex items-center gap-2 transition-colors duration-300 group-hover/button:text-primary">
+          {children}
+        </span>
+      </ButtonPrimitive>
+    );
+  }
+);
+Button.displayName = "Button";
+
+export { Button, buttonVariants };

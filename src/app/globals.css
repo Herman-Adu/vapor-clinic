@@ -1,43 +1,42 @@
 @import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --font-heading: var(--font-heading);
+  --font-drama: var(--font-drama);
+  --font-data: var(--font-data);
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar: hsl(var(--sidebar));
+  --color-chart-5: hsl(var(--chart-5));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-1: hsl(var(--chart-1));
+  --color-ring: hsl(var(--ring));
+  --color-input: hsl(var(--input));
+  --color-border: hsl(var(--border));
+  --color-destructive: hsl(var(--destructive));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card: hsl(var(--card));
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -47,73 +46,157 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-:root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
+@layer base {
+  /* ── VAPOR CLINIC LIGHT MODE ── */
+  :root {
+    --background: 252 20% 98%; /* Ghost White */
+    --foreground: 240 33% 10%; /* Deep Void */
+    --primary: 240 33% 10%;
+    --primary-foreground: 252 20% 98%;
+    --accent: 250 100% 69%; /* Plasma #7B61FF */
+    --accent-foreground: 0 0% 98%;
+    --card: 252 20% 95%;
+    --card-foreground: 240 33% 10%;
+    --popover: 252 20% 95%;
+    --popover-foreground: 240 33% 10%;
+    --secondary: 250 100% 92%;
+    --secondary-foreground: 250 100% 40%;
+    --muted: 240 20% 92%;
+    --muted-foreground: 240 10% 40%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 10% 85%;
+    --input: 240 10% 85%;
+    --ring: 250 100% 69%;
+    --radius: 2rem;
+    --font-heading: var(--font-sora);
+    --font-drama: var(--font-instrument);
+    --font-data: var(--font-fira-code);
+  }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.809 0.105 251.813);
-  --chart-2: oklch(0.623 0.214 259.815);
-  --chart-3: oklch(0.546 0.245 262.881);
-  --chart-4: oklch(0.488 0.243 264.376);
-  --chart-5: oklch(0.424 0.199 265.638);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* ── VAPOR CLINIC DARK MODE ── */
+  .dark {
+    --background: 240 33% 6%; /* Deep Void #0A0A14 */
+    --foreground: 252 20% 95%; /* Ghost #F0EFF4 */
+    --primary: 252 20% 95%;
+    --primary-foreground: 240 33% 6%;
+    --accent: 250 100% 69%; /* Plasma #7B61FF */
+    --accent-foreground: 0 0% 98%;
+    --card: 240 30% 8%;
+    --card-foreground: 252 20% 95%;
+    --popover: 240 30% 8%;
+    --popover-foreground: 252 20% 95%;
+    --secondary: 240 30% 12%;
+    --secondary-foreground: 252 20% 95%;
+    --muted: 240 30% 12%;
+    --muted-foreground: 240 10% 65%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 20% 15%;
+    --input: 240 20% 15%;
+    --ring: 250 100% 69%;
+    --radius: 2rem;
+    --font-heading: var(--font-sora);
+    --font-drama: var(--font-instrument);
+    --font-data: var(--font-fira-code);
+  }
+
+  /* Preset A: Organic Tech */
+  .theme-organic-tech {
+    --background: 48 30% 94%; /* Cream #F2F0E9 */
+    --foreground: 0 0% 10%; /* Charcoal #1A1A1A */
+    --primary: 147 16% 21%; /* Moss #2E4036 */
+    --primary-foreground: 48 30% 94%;
+    --accent: 14 60% 50%; /* Clay #CC5833 */
+    --accent-foreground: 48 30% 94%;
+    --card: var(--background);
+    --card-foreground: var(--foreground);
+    --popover: var(--background);
+    --popover-foreground: var(--foreground);
+    --border: 147 10% 88%;
+    --input: 147 10% 88%;
+    --ring: 147 16% 21%;
+    --font-heading: var(--font-plus-jakarta); /* Or Outfit */
+    --font-drama: var(--font-cormorant);
+    --font-data: var(--font-ibm-plex);
+  }
+
+  /* Preset B: Midnight Luxe */
+  .theme-midnight-luxe {
+    --background: 240 16% 6%; /* Obsidian #0D0D12 (Inverted for dark mode logic) */
+    --foreground: 40 17% 96%; /* Ivory #FAF8F5 */
+    --primary: 40 17% 96%; /* Ivory / Light */
+    --primary-foreground: 240 16% 6%; /* Dark */
+    --accent: 44 55% 54%; /* Champagne #C9A84C */
+    --accent-foreground: 240 16% 6%;
+    --card: 240 16% 8%;
+    --card-foreground: 40 17% 96%;
+    --popover: 240 16% 8%;
+    --popover-foreground: 40 17% 96%;
+    --border: 240 10% 15%;
+    --input: 240 10% 15%;
+    --ring: 44 55% 54%;
+    --font-heading: var(--font-inter);
+    --font-drama: var(--font-playfair);
+    --font-data: var(--font-jetbrains);
+  }
+
+  /* Preset C: Brutalist Signal */
+  .theme-brutalist-signal {
+    --background: 43 38% 91%; /* Off-white #F5F3EE */
+    --foreground: 0 0% 7%; /* Black #111111 */
+    --primary: 0 0% 7%; /* Black */
+    --primary-foreground: 43 38% 91%;
+    --accent: 4 79% 54%; /* Signal Red #E63B2E */
+    --accent-foreground: 0 0% 98%;
+    --card: var(--background);
+    --card-foreground: var(--foreground);
+    --popover: var(--background);
+    --popover-foreground: var(--foreground);
+    --border: 0 0% 80%;
+    --input: 0 0% 80%;
+    --ring: 0 0% 7%;
+    --font-heading: var(--font-space-grotesk);
+    --font-drama: var(--font-dm-serif);
+    --font-data: var(--font-space-mono);
+  }
+
+  /* Preset D: Vapor Clinic - Reactive */
+  .theme-vapor-clinic {
+    --background: 252 20% 98%; /* Ghost White */
+    --foreground: 240 33% 10%; /* Deep Void */
+    --primary: 240 33% 10%;
+    --primary-foreground: 252 20% 98%;
+    --accent: 250 100% 69%; /* Plasma #7B61FF */
+    --accent-foreground: 0 0% 98%;
+    --card: 252 20% 95%;
+    --card-foreground: 240 33% 10%;
+    --popover: 252 20% 95%;
+    --popover-foreground: 240 33% 10%;
+    --border: 240 10% 85%;
+    --input: 240 10% 85%;
+    --ring: 250 100% 69%;
+    --font-heading: var(--font-sora);
+    --font-drama: var(--font-instrument);
+    --font-data: var(--font-fira-code);
+  }
+
+  .dark .theme-vapor-clinic,
+  .dark.theme-vapor-clinic {
+    --background: 240 33% 6%; /* Deep Void #0A0A14 */
+    --foreground: 252 20% 95%; /* Ghost #F0EFF4 */
+    --primary: 252 20% 95%;
+    --primary-foreground: 240 33% 6%;
+    --accent: 250 100% 69%; /* Plasma #7B61FF */
+    --accent-foreground: 0 0% 98%;
+    --card: 240 30% 8%;
+    --card-foreground: 252 20% 95%;
+    --popover: 240 30% 8%;
+    --popover-foreground: 252 20% 95%;
+    --border: 240 20% 15%;
+    --input: 240 20% 15%;
+    --ring: 250 100% 69%;
+  }
 }
 
 @layer base {

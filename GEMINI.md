@@ -59,6 +59,12 @@ These rules apply to ALL presets. They are what make the output premium.
 - Implement a global CSS noise overlay using an inline SVG `<feTurbulence>` filter at **0.05 opacity** to eliminate flat digital gradients.
 - Use a `rounded-[2rem]` to `rounded-[3rem]` radius system for all containers. No sharp corners anywhere.
 
+### Theme Engine (Light/Dark)
+- Components must be fully theme-aware using Tailwind `dark:` variants or context checks.
+- **Light Theme:** Primary backgrounds use Ivory/Ghost/Cream variants. Text: Charcoal/Graphite.
+- **Dark Theme:** Primary backgrounds use Obsidian/Deep Void. Text: Ivory/White.
+- **Transitional States:** Backdrops should use `backdrop-blur-xl` with `/60` opacity to maintain legibility across modes.
+
 ### Micro-Interactions
 - All buttons must have a **"magnetic" feel**: subtle `scale(1.03)` on hover with `cubic-bezier(0.25, 0.46, 0.45, 0.94)`.
 - Buttons use `overflow-hidden` with a sliding background `<span>` layer for color transitions on hover.
@@ -113,7 +119,32 @@ All cards: `bg-[background]` surface, subtle border, `rounded-[2rem]`, drop shad
   3. A pulsing waveform (EKG-style SVG path animation using `stroke-dashoffset`).
 - Card content: Step number (monospace), title (heading font), 2-line description. Derive from user's brand purpose.
 
-### F. MEMBERSHIP / PRICING
+### F. SCROLL REVEAL — "Scrollytelling Horizon"
+A scrollytelling section with a sticky media panel and phasing content.
+- **Sticky Side:** A large image or video panel that stays pinned (e.g., right-aligned).
+- **Phasing Content:** 2-3 content blocks that scroll past, triggering transitions in the sticky media (e.g., image crossfades or filter shifts).
+- **HUD Elements:** A vertical progress bar and an animated "Step" counter (01, 02...) that tracks the scroll progress.
+
+### G. 3D VAULT NODE — "The Geometric Core"
+A high-fidelity Three.js scene featuring a rotating 3D core.
+- **Geometry:** A complex geometric form (e.g., Icosahedron) that transforms its state (Wireframe → Solid) based on scroll progress.
+- **Context:** Surrounded by a drift of particles and counter-rotating "gyroscope" torus rings.
+- **Callouts:** 3D labels attached to nodes via `@react-three/drei` that fade in/out to highlight data points.
+- **Interaction:** Smooth mouse-tracking camera parallax to add depth.
+
+### H. X-RAY VIEW — "Cinematic Diagnostic"
+A high-contrast, center-pinned focal point for narrative data.
+- **Visuals:** A fixed portrait image in the center with a scanning "laser line" and corner brackets.
+- **X-Ray Animation:** GSAP-driven filters (normal → high-contrast → glowing x-ray) that reveal different "layers" of the asset as the user scrolls.
+- **Layout:** Flanking columns for narrative prose (left) and data metrics (right).
+
+### I. GLOBAL NETWORK — "The Borderless Protocol"
+Interactive 3D Globe paired with animated data counters.
+- **The Globe:** A Three.js sphere with lat/lng grid lines and pulsing city nodes.
+- **Tracks:** Quadratic Bezier arcs between major cities with animated "travelling dots" that pulse along the paths.
+- **Stats:** Large, high-precision animated counters (using GSAP number interpolation) paired with synchronized progress fill bars.
+
+### J. MEMBERSHIP / PRICING
 - Three-tier pricing grid. Card names: "Essential", "Performance", "Enterprise" (adjust to fit brand).
 - **Middle card pops:** Primary-colored background with an accent CTA button. Slightly larger scale or `ring` border.
 - If pricing doesn't apply, convert this into a "Get Started" section with a single large CTA.
@@ -127,7 +158,7 @@ All cards: `bg-[background]` surface, subtle border, `rounded-[2rem]`, drop shad
 
 ## Technical Requirements (NEVER CHANGE)
 
-- **Stack:** React 19, Tailwind CSS v3.4.17, GSAP 3 (with ScrollTrigger plugin), Lucide React for icons.
+- **Stack:** React 19, Tailwind CSS v3.4.17, GSAP 3 (with ScrollTrigger plugin), Three.js (+ react-three-fiber/drei), Lucide React for icons.
 - **Fonts:** Load via Google Fonts `<link>` tags in `index.html` based on the selected preset.
 - **Images:** Use real Unsplash URLs. Select images matching the preset's `imageMood`. Never use placeholder URLs.
 - **File structure:** Single `App.jsx` with components defined in the same file (or split into `components/` if >600 lines). Single `index.css` for Tailwind directives + noise overlay + custom utilities.

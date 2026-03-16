@@ -1,0 +1,25 @@
+
+> temp_app@0.1.0 lint
+> eslint
+
+
+C:\Users\herma\source\repository\antigravity\website-designer\src\components\Features.tsx
+   5:10  warning  'ScrollTrigger' is defined but never used                                                                                                                                                                            @typescript-eslint/no-unused-vars
+  64:9   warning  The 'lines' array makes the dependencies of useEffect Hook (at line 102) change on every render. Move it inside the useEffect callback. Alternatively, wrap the initialization of 'lines' in its own useMemo() Hook  react-hooks/exhaustive-deps
+
+C:\Users\herma\source\repository\antigravity\website-designer\src\components\Footer.tsx
+  55:102  error  Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
+
+C:\Users\herma\source\repository\antigravity\website-designer\src\components\Hero.tsx
+  34:9  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\herma\source\repository\antigravity\website-designer\src\components\Philosophy.tsx
+   5:10  warning  'ScrollTrigger' is defined but never used                                                                                                                                                                                                                                                @typescript-eslint/no-unused-vars
+  78:7   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\herma\source\repository\antigravity\website-designer\src\components\Protocol.tsx
+    6:10  warning  'cn' is defined but never used                                          @typescript-eslint/no-unused-vars
+  111:29  error    Comments inside children section of tag should be placed inside braces  react/jsx-no-comment-textnodes
+
+Γ£û 8 problems (2 errors, 6 warnings)
+
