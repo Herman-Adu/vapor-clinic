@@ -14,12 +14,12 @@ interface MagneticButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEleme
  * Implements the "magnetic" feel and sliding background transition.
  * Uses GSAP for high-fidelity animation.
  */
-export const MagneticButton: React.FC<MagneticButtonProps> = ({
+export function MagneticButton({
   variant = "primary",
   children,
   className,
   ...props
-}) => {
+}: MagneticButtonProps) {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const slideRef = useRef<HTMLSpanElement>(null);
   const [ctx, setCtx] = useState<gsap.Context | null>(null);
